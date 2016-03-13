@@ -31,7 +31,7 @@ class APIManager {
                         NSJASONSerialization requires the Do / Try / Catch
                         Converts the NSDATA into a JSON object and cast it to a Dictionary */
                         if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                            as? [String: AnyObject] {
+                            as? JSONDictionary {
                                 print(json)
                                 
                                 let priority = DISPATCH_QUEUE_PRIORITY_HIGH

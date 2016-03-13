@@ -15,6 +15,7 @@
 		FA7E839A1C95B50600621A4C /* MusicVideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E83991C95B50600621A4C /* MusicVideoTests.swift */; };
 		FA7E83A51C95B50600621A4C /* MusicVideoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E83A41C95B50600621A4C /* MusicVideoUITests.swift */; };
 		FA7E83B71C95BAC900621A4C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E83B61C95BAC900621A4C /* APIManager.swift */; };
+		FABFE1131C95FF82008E8334 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFE1121C95FF82008E8334 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		FA7E83A41C95B50600621A4C /* MusicVideoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoUITests.swift; sourceTree = "<group>"; };
 		FA7E83A61C95B50600621A4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7E83B61C95BAC900621A4C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		FABFE1121C95FF82008E8334 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		FA7E83831C95B50600621A4C /* MusicVideo */ = {
 			isa = PBXGroup;
 			children = (
+				FABFE1111C95FF60008E8334 /* Utils */,
 				FA7E83B51C95B58E00621A4C /* Supporting Files */,
 				FA7E83B21C95B56700621A4C /* Model */,
 				FA7E83B31C95B57000621A4C /* Controller */,
@@ -159,6 +162,14 @@
 			);
 			name = "Supporting Files";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		FABFE1111C95FF60008E8334 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FABFE1121C95FF82008E8334 /* Constants.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 				FA7E83B71C95BAC900621A4C /* APIManager.swift in Sources */,
 				FA7E83871C95B50600621A4C /* ViewController.swift in Sources */,
 				FA7E83851C95B50600621A4C /* AppDelegate.swift in Sources */,
+				FABFE1131C95FF82008E8334 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +533,7 @@
 				FA7E83AB1C95B50600621A4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA7E83AC1C95B50600621A4C /* Build configuration list for PBXNativeTarget "MusicVideoTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +542,7 @@
 				FA7E83AE1C95B50600621A4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA7E83AF1C95B50600621A4C /* Build configuration list for PBXNativeTarget "MusicVideoUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +551,7 @@
 				FA7E83B11C95B50600621A4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
