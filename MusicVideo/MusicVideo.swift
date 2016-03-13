@@ -23,6 +23,9 @@ class Videos {
     private (set) var vLinkToiTunes:String
     private (set) var vReleaseDate:String
     
+    //This variable gets created from the UI
+    var vImageData:NSData?
+    
     init (data: JSONDictionary) {
         
         //If we do not initialize all properties we will get error message
