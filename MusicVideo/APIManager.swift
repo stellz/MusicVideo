@@ -11,7 +11,9 @@ import Foundation
 
 class APIManager {
     func loadData(urlString:String, completion:(result:String)->Void) {
-        let session = NSURLSession.sharedSession()
+        let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        //let session = NSURLSession.sharedSession()
         let url = NSURL(string:urlString)!
         
         let task = session.dataTaskWithURL(url) {
