@@ -16,6 +16,7 @@
 		FA7E83A51C95B50600621A4C /* MusicVideoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E83A41C95B50600621A4C /* MusicVideoUITests.swift */; };
 		FA7E83B71C95BAC900621A4C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E83B61C95BAC900621A4C /* APIManager.swift */; };
 		FABFE1131C95FF82008E8334 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFE1121C95FF82008E8334 /* Constants.swift */; };
+		FABFE1151C9600A4008E8334 /* MusicVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFE1141C9600A4008E8334 /* MusicVideo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		FA7E83A61C95B50600621A4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7E83B61C95BAC900621A4C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		FABFE1121C95FF82008E8334 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FABFE1141C9600A4008E8334 /* MusicVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7E83B61C95BAC900621A4C /* APIManager.swift */,
+				FABFE1141C9600A4008E8334 /* MusicVideo.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			files = (
 				FA7E83B71C95BAC900621A4C /* APIManager.swift in Sources */,
 				FA7E83871C95B50600621A4C /* ViewController.swift in Sources */,
+				FABFE1151C9600A4008E8334 /* MusicVideo.swift in Sources */,
 				FA7E83851C95B50600621A4C /* AppDelegate.swift in Sources */,
 				FABFE1131C95FF82008E8334 /* Constants.swift in Sources */,
 			);
