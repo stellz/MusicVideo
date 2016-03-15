@@ -155,8 +155,8 @@
 		FA7E83B41C95B57D00621A4C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E838D1C95B50600621A4C /* LaunchScreen.storyboard */,
 				FA7E83881C95B50600621A4C /* Main.storyboard */,
+				FA7E838D1C95B50600621A4C /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
