@@ -44,7 +44,6 @@ class ViewController: UIViewController {
         for (index, video) in videos.enumerate() {
             print("\(index) name = \(video.vName)")
         }
-
     }
     
     func printVideosInfo() {
