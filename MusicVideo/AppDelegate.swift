@@ -10,7 +10,7 @@ import UIKit
 
 // We add these two global variables which will be available troughout the whole app
 var reachability: Reachability?
-var reachabilityStatus = WIFI
+var reachabilityStatus = " "
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //this will listen for any type of change on the internetconnection troughout our app
         internetCheck = Reachability.reachabilityForInternetConnection()
         internetCheck?.startNotifier()
+        
+        // we add this line so the reachabilityStatus variable is initialised correctly with a real internet status even before a change occurs
+        statusChangedWithReachability(internetCheck!)
         
         return true
     }
