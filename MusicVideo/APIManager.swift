@@ -10,7 +10,7 @@ import Foundation
 
 
 class APIManager {
-    func loadData(urlString:String, completion:[Videos]->Void) {
+    func loadData(urlString:String, completion:[MusicVideo]->Void) {
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         let session = NSURLSession(configuration: config)
         //let session = NSURLSession.sharedSession()
@@ -33,10 +33,10 @@ class APIManager {
                         if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? JSONDictionary,
                         feed = json["feed"] as? JSONDictionary,
                         entries = feed["entry"] as? JSONArray {
-                            var videos = [Videos]()
+                            var videos = [MusicVideo]()
                             
                             for entry in entries {
-                                let entry = Videos(data: entry as! JSONDictionary)
+                                let entry = MusicVideo(data: entry as! JSONDictionary)
                                 videos.append(entry)
                             }
                             

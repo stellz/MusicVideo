@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Videos {
+class MusicVideo {
     
     //Data encapsulation
     

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //We add an observer to listen for changes in the reachaility status
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "ReachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.ReachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
         
         //this will listen for any type of change on the internetconnection troughout our app
         internetCheck = Reachability.reachabilityForInternetConnection()

@@ -10,14 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var videos = [Videos]()
+    var videos = [MusicVideo]()
     
     @IBOutlet weak var displayLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
         
         reachabilityStatusChanged()
         
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
 //        }
     }
     
-    func didLoadData(videos:[Videos]) {
+    func didLoadData(videos:[MusicVideo]) {
         
         // we need to set the videos property with data otherwise it will be empty aray
         //that way the function printVideosInfo() will have what to print
