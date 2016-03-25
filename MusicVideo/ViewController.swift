@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var videos = [MusicVideo]()
     
     @IBOutlet weak var displayLabel: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,7 @@ class ViewController: UIViewController {
         
         //Call API
         let api = APIManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json", completion: didLoadData)
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=100/json", completion: didLoadData)
        
         //second version without separate function
 //        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json") {
@@ -44,6 +47,8 @@ class ViewController: UIViewController {
         for (index, video) in videos.enumerate() {
             print("\(index) name = \(video.vName)")
         }
+        
+        tableView.reloadData()
     }
     
     func printVideosInfo() {
@@ -65,6 +70,25 @@ class ViewController: UIViewController {
             displayLabel.text = "Reachable via Cellular"
         default: return
         }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return videos.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let  cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        let video = videos[indexPath.row]
+        cell.textLabel?.text = "\(indexPath.row+1)"
+        cell.detailTextLabel?.text = video.vName
+        
+        return cell
     }
     
     // The deinit is called everytime the object gets deallocated; we should remove the observer here
