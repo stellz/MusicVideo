@@ -18,16 +18,6 @@ class MusicVideoTVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
         
         reachabilityStatusChanged()
-        
-        //Call API
-        let api = APIManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=100/json", completion: didLoadData)
-        
-        //second version without separate function
-        //        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json") {
-        //            (result:String) in
-        //            print(result)
-        //        }
     }
     
     func didLoadData(videos:[MusicVideo]) {
@@ -56,12 +46,54 @@ class MusicVideoTVC: UITableViewController {
         switch reachabilityStatus {
         case NOACCESS:
             view.backgroundColor = UIColor.redColor()
-        case WIFI:
+            
+            //we dispatch the func asynchronusly to make sure it will be presented after the main view is already on the screen; also when calling function in a closure we call it with self.
+            
+            //instead of using the dispatch we could show the alert in the viewDidLoad(), but that will lead to multiple function calls each time the view is shown, and we don't want that
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.showAlert()
+            }
+        default:
             view.backgroundColor = UIColor.greenColor()
-        case WWAN:
-            view.backgroundColor = UIColor.yellowColor()
-        default: return
+            if videos.count > 0 {
+                print("Do not refresh api, don't make network calls")
+            } else {
+                runAPI()
+            }
         }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "No Internet Access", message: "Please, make sure you are connected to the Internet", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { action -> () in
+            print("Cancel")
+        })
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { action -> () in
+            print("Delete")
+        })
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: { action -> Void in
+            print("OK")
+            
+            //do something if you want
+            //alert.dismissViewControllerAnimated(true, completion: nil)
+        })
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func runAPI() {
+        //Call API
+        let api = APIManager()
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=100/json", completion: didLoadData)
+        
     }
     
     
