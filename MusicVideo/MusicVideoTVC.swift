@@ -51,7 +51,9 @@ class MusicVideoTVC: UITableViewController {
             
             //instead of using the dispatch we could show the alert in the viewDidLoad(), but that will lead to multiple function calls each time the view is shown, and we don't want that
             
-            dispatch_async(dispatch_get_main_queue()) {
+            
+            //self has a pointer to the closure; but the closure has a pointer to self itself -> this leads to retain cicle that's why we do [unowned self] in... ; it can also be [weak self] in ...
+            dispatch_async(dispatch_get_main_queue()) {[unowned self] in
                 self.showAlert()
             }
         default:
