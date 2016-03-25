@@ -10,8 +10,9 @@ import Foundation
 
 class MusicVideo {
     
-    //Data encapsulation
+    var vRank = 0
     
+    //Data encapsulation
     private (set) var vName:String
     private (set) var vImageUrl:String
     private (set) var vVideoUrl:String
