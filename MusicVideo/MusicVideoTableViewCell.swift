@@ -54,8 +54,6 @@ class MusicVideoTableViewCell: UITableViewCell {
                 video.vImageData = data
                 image = UIImage(data: data!)
                 
-            } else {
-                image = UIImage(named: "imageNotAvailable")
             }
             
             //Move back to main queue because we must update the UI while in a block on another thread

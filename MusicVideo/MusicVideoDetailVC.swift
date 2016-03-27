@@ -10,4 +10,28 @@ import UIKit
 
 class MusicVideoDetailVC: UIViewController {
 
+    var musicVideo:MusicVideo!
+    
+    @IBOutlet weak var videoImage: UIImageView!
+    @IBOutlet weak var vName: UILabel!
+    @IBOutlet weak var vGenre: UILabel!
+    @IBOutlet weak var vPrice: UILabel!
+    @IBOutlet weak var vRights: UILabel!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        vName.text = musicVideo.vName
+        vGenre.text = musicVideo.vGenre
+        vPrice.text = musicVideo.vPrice
+        vRights.text = musicVideo.vRights
+        if musicVideo.vImageData != nil {
+            videoImage.image = UIImage(data: musicVideo.vImageData!)
+        } else {
+            videoImage.image = UIImage(named: "imageNotAvailable")
+        }
+        
+    }
+    
 }
