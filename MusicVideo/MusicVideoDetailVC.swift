@@ -22,6 +22,8 @@ class MusicVideoDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = musicVideo.vArtist
+        
         vName.text = musicVideo.vName
         vGenre.text = musicVideo.vGenre
         vPrice.text = musicVideo.vPrice
