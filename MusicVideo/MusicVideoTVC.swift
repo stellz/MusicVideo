@@ -21,7 +21,9 @@ class MusicVideoTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         reachabilityStatusChanged()
     }
@@ -48,6 +50,10 @@ class MusicVideoTVC: UITableViewController {
         }
     }
     
+    func prefferedFontChanged () {
+        print ("The preffered font has changed")
+    }
+    
     func reachabilityStatusChanged () {
         switch reachabilityStatus {
         case NOACCESS:
@@ -63,7 +69,6 @@ class MusicVideoTVC: UITableViewController {
                 self.showAlert()
             }
         default:
-            view.backgroundColor = UIColor.greenColor()
             if videos.count > 0 {
                 print("Do not refresh api, don't make network calls")
             } else {
@@ -108,6 +113,7 @@ class MusicVideoTVC: UITableViewController {
     // The deinit is called everytime the object gets deallocated; we should remove the observer here
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
 
 

@@ -153,6 +153,7 @@
 			children = (
 				FA7E83861C95B50600621A4C /* ViewController.swift */,
 				5555D61A1CA54941003BEF2C /* MusicVideoTVC.swift */,
+				5555D61C1CA553D3003BEF2C /* MusicVideoTableViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -162,7 +163,6 @@
 			children = (
 				FA7E83881C95B50600621A4C /* Main.storyboard */,
 				FA7E838D1C95B50600621A4C /* LaunchScreen.storyboard */,
-				5555D61C1CA553D3003BEF2C /* MusicVideoTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
