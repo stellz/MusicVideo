@@ -42,9 +42,9 @@ class MusicVideoDetailVC: UIViewController {
     func prefferedFontChanged () {
         
         vName.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        vGenre.text = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        vPrice.text = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        vRights.text = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        vGenre.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        vPrice.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        vRights.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         
         print ("The preffered font has changed")
     }
