@@ -53,7 +53,7 @@ class MusicVideoDetailVC: UIViewController {
     
     @IBAction func playVideo(sender: UIBarButtonItem) {
         
-        let url = NSURL(string: musicVideo.vImageUrl)!
+        let url = NSURL(string: musicVideo.vVideoUrl)!
         let player = AVPlayer(URL: url)
         let playerViewController = AVPlayerViewController()
         
