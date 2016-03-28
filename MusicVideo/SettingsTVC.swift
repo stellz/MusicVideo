@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsTVC: UITableViewController {
+class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var aboutDisplay: UILabel!
     @IBOutlet weak var feedbackDisplay: UILabel!
@@ -71,6 +72,57 @@ class SettingsTVC: UITableViewController {
         
         
         print ("The preffered font has changed")
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 00 && indexPath.row == 1 {
+            let mailComposeViewController = configureMail()
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            } else {
+                // No email is setup on the Phone
+                mailAlert()
+            }
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    func mailAlert(){
+        let alertController:UIAlertController = UIAlertController(title: "Alert", message: "No E-mail account setup for iPhone", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
+            // Do something if you want
+        }
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func configureMail() -> MFMailComposeViewController {
+        
+        let mailComposeVC = MFMailComposeViewController()
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setCcRecipients(["stel4e@gmail.com"])
+        mailComposeVC.setSubject("Music Video App Feedback")
+        mailComposeVC.setMessageBody("Hi Stella, \n\n I would like to share the following feedback...\n", isHTML: false)
+        
+        return mailComposeVC
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mial cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mial saved")
+        case MFMailComposeResultSent.rawValue:
+            print("Mial sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Mial failed")
+        default:
+            print("Unknown issue")
+        }
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // The deinit is called everytime the object gets deallocated; we should remove the observer here
