@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class MusicVideoDetailVC: UIViewController {
 
@@ -49,6 +51,18 @@ class MusicVideoDetailVC: UIViewController {
         print ("The preffered font has changed")
     }
     
+    @IBAction func playVideo(sender: UIBarButtonItem) {
+        
+        let url = NSURL(string: musicVideo.vImageUrl)!
+        let player = AVPlayer(URL: url)
+        let playerViewController = AVPlayerViewController()
+        
+        playerViewController.player = player
+        self.presentViewController(playerViewController, animated: true) { 
+            playerViewController.player?.play()
+        }
+        
+    }
     // The deinit is called everytime the object gets deallocated; we should remove the observer here
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
