@@ -22,16 +22,15 @@ class MusicVideoTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
-        
-        title = "The iTunes Top \(limit) Music Videos"
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         reachabilityStatusChanged()
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
+        
+        title = "The iTunes Top \(limit) Music Videos"
     }
     
     func didLoadData(videos:[MusicVideo]) {
@@ -111,6 +110,8 @@ class MusicVideoTVC: UITableViewController {
     @IBAction func refresh(sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
         runAPI()
+        
+        title = "The iTunes Top \(limit) Music Videos"
     }
     
     func getAPICount() {
