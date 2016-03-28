@@ -33,6 +33,10 @@ class SettingsTVC: UITableViewController {
             let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICNT") as! Int
             sliderCnt.value = Float(theValue)
             APICnt.text = "\(theValue)"
+        } else {
+            //for the very first time on installation of the app (if we don't want to deepnd on storyboard)
+            sliderCnt.value = 10.0
+            APICnt.text = "\(Int(sliderCnt.value))"
         }
     }
     
