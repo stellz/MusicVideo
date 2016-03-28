@@ -22,6 +22,9 @@ class MusicVideoDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        
         title = musicVideo.vArtist
         
         vName.text = musicVideo.vName
@@ -34,6 +37,21 @@ class MusicVideoDetailVC: UIViewController {
             videoImage.image = UIImage(named: "imageNotAvailable")
         }
         
+    }
+    
+    func prefferedFontChanged () {
+        
+        vName.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        vGenre.text = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        vPrice.text = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        vRights.text = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        
+        print ("The preffered font has changed")
+    }
+    
+    // The deinit is called everytime the object gets deallocated; we should remove the observer here
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
     
 }
