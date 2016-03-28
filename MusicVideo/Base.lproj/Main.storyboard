@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O80-lO-k4i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O80-lO-k4i">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="117" id="PEy-0r-w99" customClass="MusicVideoTableViewCell" customModule="MusicVideo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="117" id="PEy-0r-w99" customClass="MusicVideoTableViewCell" customModule="MusicVideo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEy-0r-w99" id="u8v-HM-zWT">
@@ -46,6 +46,7 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="ua6-ga-MfH" firstAttribute="leading" secondItem="u8v-HM-zWT" secondAttribute="leadingMargin" id="95e-YO-745"/>
                                         <constraint firstItem="dOr-kw-Enr" firstAttribute="leading" secondItem="b6c-6F-c1K" secondAttribute="leading" id="Eb8-gP-LoD"/>
@@ -92,10 +93,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g2h-wA-g0D">
-                                <rect key="frame" x="20" y="146" width="560" height="272"/>
+                                <rect key="frame" x="20" y="147" width="560" height="270"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Mg-YQ-syE">
-                                <rect key="frame" x="20" y="100" width="560" height="20"/>
+                                <rect key="frame" x="20" y="100" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ZXi-T8-ogS"/>
                                 </constraints>
@@ -104,7 +105,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: POP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-5p-161">
-                                <rect key="frame" x="20" y="438" width="88" height="20"/>
+                                <rect key="frame" x="20" y="437" width="220" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="HGZ-lj-V4r"/>
                                     <constraint firstAttribute="height" constant="21" id="T6M-Mu-MAM"/>
@@ -114,7 +115,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49e-5o-whV">
-                                <rect key="frame" x="537" y="438" width="43" height="20"/>
+                                <rect key="frame" x="481" y="437" width="99" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="99" id="6Th-a1-uFB"/>
                                 </constraints>
@@ -170,9 +171,11 @@
                                 <exclude reference="5vx-1m-lg5"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="FX1-Tt-YHs"/>
+                                <exclude reference="Hrm-L9-sG9"/>
                                 <exclude reference="cni-DL-SWw"/>
                                 <exclude reference="qmb-Hs-t3L"/>
-                                <exclude reference="Xop-H0-SX5"/>
+                                <exclude reference="zjf-2N-ega"/>
                                 <include reference="4lA-gd-l7l"/>
                                 <exclude reference="Gax-kf-xfS"/>
                                 <exclude reference="TMR-L1-FAP"/>
@@ -180,6 +183,13 @@
                                 <include reference="VSF-9S-LI1"/>
                                 <include reference="nAa-QA-4DO"/>
                                 <include reference="xJN-gZ-KHK"/>
+                                <exclude reference="5ij-Yr-3DX"/>
+                                <exclude reference="RIa-XU-ZDp"/>
+                                <exclude reference="Xop-H0-SX5"/>
+                                <exclude reference="keB-YB-2Tk"/>
+                                <exclude reference="IH1-bp-9sS"/>
+                                <exclude reference="B6M-6G-RpX"/>
+                                <exclude reference="r90-IL-NUr"/>
                             </mask>
                         </variation>
                     </view>
