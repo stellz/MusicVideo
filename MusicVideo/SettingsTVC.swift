@@ -17,7 +17,8 @@ class SettingsTVC: UITableViewController {
     @IBOutlet weak var bestImageDisplay: UILabel!
     @IBOutlet weak var APICnt: UILabel!
     @IBOutlet weak var sliderCnt: UISlider!
-    
+    @IBOutlet weak var numberOfVideosDisplay: UILabel!
+    @IBOutlet weak var dragTheSliderDisplay: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,11 +61,13 @@ class SettingsTVC: UITableViewController {
     
     func prefferedFontChanged () {
         
-        aboutDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        feedbackDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        securityDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        bestImageDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        APICnt.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        aboutDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        feedbackDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        securityDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        bestImageDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        APICnt.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        numberOfVideosDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        dragTheSliderDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         
         
         print ("The preffered font has changed")

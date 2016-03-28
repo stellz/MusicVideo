@@ -51,6 +51,36 @@ class MusicVideoDetailVC: UIViewController {
         print ("The preffered font has changed")
     }
     
+    @IBAction func socialMedia(sender: UIBarButtonItem) {
+        
+        shareMedia()
+    }
+    
+    func shareMedia() {
+        
+        let activity1 = "Have yo had the opportunity to see this Music Video?"
+        let activity2 = "\(musicVideo.vName) by \(musicVideo.vArtist)"
+        let activity3 = "Whatch it and tell me what you think"
+        let activity4 = musicVideo.vLinkToiTunes
+        let activity5 = "Shared with the Music Video App - Step It UP!"
+        
+        let activityViewController = UIActivityViewController(activityItems: [activity1, activity2, activity3, activity4, activity5], applicationActivities: nil)
+        
+        //activityViewController.excludedActivityTypes = [UIActivityTypeMail]
+        
+        //activityViewController.excludedActivityTypes = [UIActivityTypePostToTwitter,UIActivityTypePostToVimeo]
+        
+        activityViewController.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            
+            if activity == UIActivityTypeMail {
+                print("Email selected")
+            }
+        }
+        
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func playVideo(sender: UIBarButtonItem) {
         
         let url = NSURL(string: musicVideo.vVideoUrl)!
