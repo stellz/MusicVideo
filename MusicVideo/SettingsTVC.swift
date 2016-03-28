@@ -28,6 +28,12 @@ class SettingsTVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+        
+        if (NSUserDefaults.standardUserDefaults().objectForKey("APICNT") != nil) {
+            let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICNT") as! Int
+            sliderCnt.value = Float(theValue)
+            APICnt.text = "\(theValue)"
+        }
     }
     
     @IBAction func touchIDSec(sender: UISwitch) {
@@ -40,6 +46,12 @@ class SettingsTVC: UITableViewController {
 //        }
         
         defaults.setBool(touchID.on, forKey: "SecSetting")
+    }
+    
+    @IBAction func valueChanged(sender: UISlider) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(Int(sliderCnt.value), forKey: "APICNT")
+        APICnt.text = "\(Int(sliderCnt.value))"
     }
     
     func prefferedFontChanged () {

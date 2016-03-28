@@ -296,7 +296,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVp-Co-35E">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zVp-Co-35E">
                                                     <rect key="frame" x="543" y="22" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="touchIDSec:" destination="Z61-vP-QUy" eventType="valueChanged" id="2ic-3A-PRq"/>
@@ -327,7 +327,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-8f-ZAi">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-8f-ZAi">
                                                     <rect key="frame" x="543" y="22" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -368,6 +368,9 @@
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="4ap-dr-hap">
                                                     <rect key="frame" x="18" y="22" width="564" height="31"/>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="Z61-vP-QUy" eventType="valueChanged" id="W89-ll-7aQ"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
                                             <constraints>
