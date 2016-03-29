@@ -56,7 +56,7 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
         resultSearchController.searchResultsUpdater = self
         definesPresentationContext = true
         resultSearchController.dimsBackgroundDuringPresentation = false
-        resultSearchController.searchBar.placeholder = "Search for Artist"
+        resultSearchController.searchBar.placeholder = "Search for Artist, Video, Rank"
         resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
         resultSearchController.searchBar.barTintColor = UIColor.blackColor()
         
