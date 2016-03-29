@@ -32,22 +32,6 @@ class MusicVideoTVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.apiCountChanged), name: kAPICountChangedNotification, object: nil)
         
         reachabilityStatusChanged()
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
-        
-        title = "The iTunes Top \(limit) Music Videos"
-        
-        // Setup the Search Controller
-        
-        //resultSearchController.searchResultsUpdater = self
-        
-        definesPresentationContext = true
-        resultSearchController.dimsBackgroundDuringPresentation = false
-        resultSearchController.searchBar.placeholder = "Search for Artist"
-        resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
-        
-        // add the search bar to your tableview
-        tableView.tableHeaderView = resultSearchController.searchBar
     }
     
     func didLoadData(videos:[MusicVideo]) {
@@ -63,6 +47,21 @@ class MusicVideoTVC: UITableViewController {
             print("\(index) name = \(video.vName)")
         }
         
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
+        
+        title = "The iTunes Top \(limit) Music Videos"
+        
+        // Setup the Search Controller
+        
+        resultSearchController.searchResultsUpdater = self
+        definesPresentationContext = true
+        resultSearchController.dimsBackgroundDuringPresentation = false
+        resultSearchController.searchBar.placeholder = "Search for Artist"
+        resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+        resultSearchController.searchBar.barTintColor = UIColor.blackColor()
+        
+        // add the search bar to your tableview
+        tableView.tableHeaderView = resultSearchController.searchBar
         tableView.reloadData()
     }
     
