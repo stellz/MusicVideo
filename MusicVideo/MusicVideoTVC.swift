@@ -267,8 +267,15 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
     
     
     func performSearch(searchText: String) {
+        
+        //searching only for the Artist
+//        filteredVideos = videos.filter { MusicVideo in
+//            return MusicVideo.vArtist.lowercaseString.containsString(searchText.lowercaseString)
+//        }
+        
+        //searching for Artis, Video name, Video rank
         filteredVideos = videos.filter { MusicVideo in
-            return MusicVideo.vArtist.lowercaseString.containsString(searchText.lowercaseString)
+            return MusicVideo.vArtist.lowercaseString.containsString(searchText.lowercaseString) || MusicVideo.vName.lowercaseString.containsString(searchText.lowercaseString) || "\(MusicVideo.vRank)".lowercaseString.containsString(searchText.lowercaseString)
         }
         
         tableView.reloadData()
