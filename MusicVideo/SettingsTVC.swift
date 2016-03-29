@@ -27,7 +27,7 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         
         tableView.alwaysBounceVertical = false
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
         
