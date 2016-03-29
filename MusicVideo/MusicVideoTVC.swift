@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
+class MusicVideoTVC: UITableViewController {
     
     var videos = [MusicVideo]()
     var filteredVideos = [MusicVideo]()
@@ -260,12 +260,6 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-    searchController.searchBar.text!.lowercaseString
-        performSearch(searchController.searchBar.text!)
-    }
-    
-    
     func performSearch(searchText: String) {
         
         //searching only for the Artist
@@ -281,5 +275,11 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
         tableView.reloadData()
     }
 
+}
 
+extension MusicVideoTVC: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        searchController.searchBar.text!.lowercaseString
+        performSearch(searchController.searchBar.text!)
+    }
 }
