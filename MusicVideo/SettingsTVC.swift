@@ -11,6 +11,8 @@ import MessageUI
 
 class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
+    var APICntChanged:Bool = false
+    
     @IBOutlet weak var aboutDisplay: UILabel!
     @IBOutlet weak var feedbackDisplay: UILabel!
     @IBOutlet weak var securityDisplay: UILabel!
@@ -20,6 +22,8 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var sliderCnt: UISlider!
     @IBOutlet weak var numberOfVideosDisplay: UILabel!
     @IBOutlet weak var dragTheSliderDisplay: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +46,16 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        APICntChanged = false
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        if APICntChanged {
+            NSNotificationCenter.defaultCenter().postNotificationName(kAPICountChangedNotification, object: nil)
+        }
+    }
+    
     @IBAction func touchIDSec(sender: UISwitch) {
         let defaults = NSUserDefaults.standardUserDefaults()
         
@@ -59,7 +73,7 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         defaults.setObject(Int(sliderCnt.value), forKey: "APICNT")
         APICnt.text = "\(Int(sliderCnt.value))"
         
-        NSNotificationCenter.defaultCenter().postNotificationName(kAPICountChangedNotification, object: nil)
+        APICntChanged = true
     }
     
     func prefferedFontChanged () {
