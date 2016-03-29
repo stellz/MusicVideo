@@ -11,6 +11,10 @@ import UIKit
 class MusicVideoTVC: UITableViewController {
     
     var videos = [MusicVideo]()
+    var filteredVideos = [MusicVideo]()
+    let resultSearchController = UISearchController(searchResultsController:nil) // the search results will be displayed in the same view where we search - that's why it's nil
+    
+    var limit = 10
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -21,7 +25,11 @@ class MusicVideoTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.apiCountChanged), name: kAPICountChangedNotification, object: nil)
         
         reachabilityStatusChanged()
     }
@@ -39,6 +47,21 @@ class MusicVideoTVC: UITableViewController {
             print("\(index) name = \(video.vName)")
         }
         
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
+        
+        title = "The iTunes Top \(limit) Music Videos"
+        
+        // Setup the Search Controller
+        
+        resultSearchController.searchResultsUpdater = self
+        definesPresentationContext = true
+        resultSearchController.dimsBackgroundDuringPresentation = false
+        resultSearchController.searchBar.placeholder = "Search for Artist, Video, Rank"
+        resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+        resultSearchController.searchBar.barTintColor = UIColor.blackColor()
+        
+        // add the search bar to your tableview
+        tableView.tableHeaderView = resultSearchController.searchBar
         tableView.reloadData()
     }
     
@@ -46,6 +69,15 @@ class MusicVideoTVC: UITableViewController {
         for video in videos {
             print("name = \(video.vName)")
         }
+    }
+    
+    func apiCountChanged() {
+        runAPI()
+        title = "The iTunes Top \(limit) Music Videos"
+    }
+    
+    func prefferedFontChanged () {
+        print ("The preffered font has changed")
     }
     
     func reachabilityStatusChanged () {
@@ -63,7 +95,6 @@ class MusicVideoTVC: UITableViewController {
                 self.showAlert()
             }
         default:
-            view.backgroundColor = UIColor.greenColor()
             if videos.count > 0 {
                 print("Do not refresh api, don't make network calls")
             } else {
@@ -97,10 +128,37 @@ class MusicVideoTVC: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    @IBAction func refresh(sender: UIRefreshControl) {
+        refreshControl?.endRefreshing()
+        
+        if resultSearchController.active {
+            refreshControl?.attributedTitle = NSAttributedString(string: "No refresh allowed in search")
+        } else {
+            runAPI()
+            title = "The iTunes Top \(limit) Music Videos"
+        }
+    }
+    
+    func getAPICount() {
+        if (NSUserDefaults.standardUserDefaults().objectForKey("APICNT") != nil) {
+            let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICNT") as! Int
+            limit = theValue
+        }
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+        let refreshDate = formatter.stringFromDate(NSDate())
+        
+        refreshControl?.attributedTitle = NSAttributedString(string: "\(refreshDate)")
+    }
+    
     func runAPI() {
+        
+        getAPICount()
+        
         //Call API
         let api = APIManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=100/json", completion: didLoadData)
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json", completion: didLoadData)
         
     }
     
@@ -108,6 +166,7 @@ class MusicVideoTVC: UITableViewController {
     // The deinit is called everytime the object gets deallocated; we should remove the observer here
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
 
 
@@ -119,18 +178,26 @@ class MusicVideoTVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
+        if resultSearchController.active {
+            return filteredVideos.count
+        }
         return videos.count
     }
 
     private struct storyboard {
         static let cellReuseIdentifier = "cell"
+        static let segueIdentifier = "musicDetail"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(storyboard.cellReuseIdentifier, forIndexPath: indexPath) as! MusicVideoTableViewCell
 
-        cell.video = videos[indexPath.row]
+        if resultSearchController.active {
+            cell.video = filteredVideos[indexPath.row]
+        } else {
+            cell.video = videos[indexPath.row]
+        }
 
         return cell
     }
@@ -171,14 +238,40 @@ class MusicVideoTVC: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == storyboard.segueIdentifier {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+                let video:MusicVideo
+                
+                if resultSearchController.active {
+                    video = filteredVideos[indexPath.row]
+                } else {
+                    video = videos[indexPath.row]
+                }
+                
+                let dvc = segue.destinationViewController as! MusicVideoDetailVC
+                dvc.musicVideo = video
+            }
+        }
     }
-    */
-
+    
+    func performSearch(searchText: String) {
+        
+        //searching only for the Artist
+//        filteredVideos = videos.filter { MusicVideo in
+//            return MusicVideo.vArtist.lowercaseString.containsString(searchText.lowercaseString)
+//        }
+        
+        //searching for Artis, Video name, Video rank
+        filteredVideos = videos.filter { MusicVideo in
+            return MusicVideo.vArtist.lowercaseString.containsString(searchText.lowercaseString) || MusicVideo.vName.lowercaseString.containsString(searchText.lowercaseString) || "\(MusicVideo.vRank)".lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
+    }
 }
