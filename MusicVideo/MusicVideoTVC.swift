@@ -274,12 +274,4 @@ class MusicVideoTVC: UITableViewController {
         
         tableView.reloadData()
     }
-
-}
-
-extension MusicVideoTVC: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        searchController.searchBar.text!.lowercaseString
-        performSearch(searchController.searchBar.text!)
-    }
 }
