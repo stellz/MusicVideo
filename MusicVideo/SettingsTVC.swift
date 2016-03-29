@@ -58,6 +58,8 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(Int(sliderCnt.value), forKey: "APICNT")
         APICnt.text = "\(Int(sliderCnt.value))"
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(kAPICountChangedNotification, object: nil)
     }
     
     func prefferedFontChanged () {

@@ -26,6 +26,8 @@ class MusicVideoTVC: UITableViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.prefferedFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.apiCountChanged), name: kAPICountChangedNotification, object: nil)
+        
         reachabilityStatusChanged()
         
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
@@ -53,6 +55,11 @@ class MusicVideoTVC: UITableViewController {
         for video in videos {
             print("name = \(video.vName)")
         }
+    }
+    
+    func apiCountChanged() {
+        runAPI()
+        title = "The iTunes Top \(limit) Music Videos"
     }
     
     func prefferedFontChanged () {
