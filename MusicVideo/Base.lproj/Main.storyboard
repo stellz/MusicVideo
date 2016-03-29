@@ -474,4 +474,5 @@
     <resources>
         <image name="imageNotAvailable" width="370" height="222"/>
     </resources>
+    <color key="tintColor" red="1" green="0.0078431377190000002" blue="0.20000001789999999" alpha="1" colorSpace="deviceRGB"/>
 </document>

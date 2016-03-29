@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        window?.tintColor = UIColor.redColor()
+        
         //We add an observer to listen for changes in the reachaility status
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.ReachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
         
